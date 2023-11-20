@@ -1,7 +1,10 @@
 import Axios from "axios";
+import { getAuthToken } from "./auth";
 
-const axiosProgress = Axios.create({ baseURL: "https://humorous-angry-detail.glitch.me/progress" });
-const axiosUser = Axios.create({ baseURL: "https://humorous-angry-detail.glitch.me/user" });
+const API_URL = "https://humorous-angry-detail.glitch.me";
+
+const axiosProgress = Axios.create({ baseURL: `${ API_URL }/progress` });
+const axiosUser = Axios.create({ baseURL: `${ API_URL }/user` });
 
 export const findAll = async () => {
     return new Promise(async (resolve, reject) => {
@@ -31,10 +34,10 @@ export const findOne = async (progressId) => {
 
 export const save = async (progress) => {
     return new Promise( async (resolve, reject) => {
-        //const headers = { "Authorization": getAuthToken }
+        const headers = { "Authorization": getAuthToken() }
 
         try {
-            const response = await axiosProgress.post("/", progress/* , { headers } */);
+            const response = await axiosProgress.post("/", progress, { headers });
 
             if (response.status !== 201) throw Error();
             
@@ -47,10 +50,10 @@ export const save = async (progress) => {
 
 export const updateProgress = async (progress) => {
     return new Promise( async (resolve, reject) => {
-        //const headers = { "Authorization": getAuthToken }
+        const headers = { "Authorization": getAuthToken() }
 
         try {
-            const response = await axiosProgress.put("/", progress/* , { headers } */);
+            const response = await axiosProgress.put("/", progress, { headers });
             
             if (response.status !== 200) throw Error();
 
@@ -63,10 +66,10 @@ export const updateProgress = async (progress) => {
 
 export const deleteProgress = async (progressId) => {
     return new Promise( async (resolve, reject) => {
-        //const headers = { "Authorization": getAuthToken }
+        const headers = { "Authorization": getAuthToken }
 
         try {
-            const response = await axiosProgress.delete(`/${ progressId }`, /* , { headers } */);
+            const response = await axiosProgress.delete(`/${ progressId }`, { headers });
 
             if (response.status !== 200) throw Error();
 
