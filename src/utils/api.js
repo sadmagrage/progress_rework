@@ -1,7 +1,7 @@
 import Axios from "axios";
 
-const axiosProgress = Axios.create({ baseURL: "http://localhost:3000/progress" });
-const axiosUser = Axios.create({ baseURL: "http://localhost:3000/user" });
+const axiosProgress = Axios.create({ baseURL: "https://humorous-angry-detail.glitch.me/progress" });
+const axiosUser = Axios.create({ baseURL: "https://humorous-angry-detail.glitch.me/user" });
 
 export const findAll = async () => {
     return new Promise(async (resolve, reject) => {
