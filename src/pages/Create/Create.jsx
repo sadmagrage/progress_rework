@@ -6,7 +6,6 @@ import { findLast, save } from "../../utils/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { getAuthToken } from "../../utils/auth";
-import { jwtDecode } from "jwt-decode";
 import useTheme from "../../context/ThemeContext";
 
 export default function Create () {
@@ -46,7 +45,7 @@ export default function Create () {
                 <AttemptComponent darkMode={ darkMode } >Attempt: { attempt }</AttemptComponent>
                 <TimestampComponent darkMode={ darkMode } >{ !timestamp ? "" : timestamp }</TimestampComponent>
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
-                    <MobileDateTimePicker onChange={ (e) => {setDateTime(e); setTimestamp(new Date(e).getTime())} } value={ dateTime } sx={{ color: darkMode ? "white" : "black" }} />
+                    <MobileDateTimePicker onChange={ (e) => {setDateTime(e); setTimestamp(new Date(e).getTime())} } value={ dateTime } />
                 </LocalizationProvider>
                 <SubmitButton darkMode={ darkMode } onClick={ okButton }>Submit</SubmitButton>
             </ProgressForm>

@@ -66,7 +66,7 @@ export const updateProgress = async (progress) => {
 
 export const deleteProgress = async (progressId) => {
     return new Promise( async (resolve, reject) => {
-        const headers = { "Authorization": getAuthToken }
+        const headers = { "Authorization": getAuthToken() }
 
         try {
             const response = await axiosProgress.delete(`/${ progressId }`, { headers });

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { deleteProgress, findOne, updateProgress } from "../../utils/api";
 import { useLocation, useNavigate } from "react-router-dom";
-import { CreateStyled, ProgressForm, SubmitButton, TimestampComponent } from "../Create/Create.styled";
+import { AttemptComponent, CreateStyled, ProgressForm, SubmitButton, TimestampComponent } from "../Create/Create.styled";
 import { LocalizationProvider, MobileDateTimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from "dayjs";
 import { ConfirmDelete, DeleteBtn, DeleteButton, DeleteButtons, DeleteMessage, ProgressHeader } from "./EditProgress.styled";
 import { toast } from "react-toastify";
 import { getAuthToken } from "../../utils/auth";
+import useTheme from "../../context/ThemeContext";
 
 export default function EditProgress () {
 
@@ -16,6 +17,7 @@ export default function EditProgress () {
     const [datetime, setDatetime] = useState();
     const [timestamp, setTimestamp] = useState();
     const [confirmationCall, setConfirmationCall] = useState(false);
+    const { darkMode } = useTheme();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -75,23 +77,23 @@ export default function EditProgress () {
     }
 
     return (
-        <CreateStyled>
-            <ProgressForm confirm={ (!confirmationCall) } >
-                <ProgressHeader>
-                    <h3>Attempt: { attempt }</h3>
-                    <DeleteBtn src="./delete_ico.png" onClick={ setConfirmationCall } />
+        <CreateStyled darkMode={ darkMode } >
+            <ProgressForm darkMode={ darkMode } confirm={ (!confirmationCall) } >
+                <ProgressHeader darkMode={ darkMode } >
+                    <AttemptComponent darkMode={ darkMode } >Attempt: { attempt }</AttemptComponent>
+                    <DeleteBtn darkMode={ darkMode } src="./delete_ico.png" onClick={ setConfirmationCall } />
                 </ProgressHeader>
-                <TimestampComponent>{ !timestamp ? "" : timestamp }</TimestampComponent>
+                <TimestampComponent darkMode={ darkMode } >{ !timestamp ? "" : timestamp }</TimestampComponent>
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
-                    <MobileDateTimePicker onChange={ changeValue } value={ !datetime ? null : datetime } />
+                    <MobileDateTimePicker onChange={ changeValue } value={ !datetime ? null : datetime } sx={{  }} />
                 </LocalizationProvider>
-                <SubmitButton onClick={ () => updatingProgress() }>Submit</SubmitButton>
+                <SubmitButton darkMode={ darkMode } onClick={ () => updatingProgress() }>Submit</SubmitButton>
             </ProgressForm>
-            <ConfirmDelete confirm={ confirmationCall }>
-                <DeleteMessage>Você tem certeza que deseja deletar o progress ?</DeleteMessage>
+            <ConfirmDelete darkMode={ darkMode } confirm={ confirmationCall }>
+                <DeleteMessage darkMode={ darkMode } >Você tem certeza que deseja deletar o progress ?</DeleteMessage>
                 <DeleteButtons>
-                    <DeleteButton onClick={ deletingProgress } >Sim</DeleteButton>
-                    <DeleteButton onClick={ () => setConfirmationCall(false) } >Não</DeleteButton>
+                    <DeleteButton darkMode={ darkMode } onClick={ deletingProgress } >Sim</DeleteButton>
+                    <DeleteButton darkMode={ darkMode } onClick={ () => setConfirmationCall(false) } >Não</DeleteButton>
                 </DeleteButtons>
             </ConfirmDelete>
         </CreateStyled>

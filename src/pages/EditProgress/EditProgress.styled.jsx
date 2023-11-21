@@ -21,24 +21,28 @@ export const EditProgressCardHeader = styled.div`
 `;
 
 export const ProgressHeader = styled.div`
+    background-color: ${ props => !props.darkMode ? "rgba(220,220,220,0.8)" : "#333" };
     display: flex;
     justify-content: space-between;
 `;
 
 export const DeleteBtn = styled.img`
+    background-color: ${ props => props.darkMode ? "rgba(220,220,220,0.8)" : "#333" };
+    padding: 2px;
     width: 15px;
     height: 15px;
     align-self: center;
+    border-radius: 5px;
     &:hover {
         cursor: pointer;
     }
 `;
 
 export const ConfirmDelete = styled.div`
+    background-color: ${ props => props.darkMode ? "#333" : "rgba(220,220,220,0.8)" };
     display: ${ props => props.confirm ? "flex" : "none" };
     flex-direction: column;
     justify-content: space-around;
-    background-color: rgba(220,220,220,0.8);
     width: 400px;
     height: 70px;
     padding: 10px;
@@ -46,6 +50,7 @@ export const ConfirmDelete = styled.div`
 `;
 
 export const DeleteMessage = styled.h5`
+    color: ${ props => props.darkMode ? "white" : "black" };
     text-align: center;
     width: 100%
 `;
@@ -57,8 +62,12 @@ export const DeleteButtons = styled.div`
 `;
 
 export const DeleteButton = styled.button`
+    background-color: ${ props => props.darkMode ? "#111" : "white" };
     color: blue;
     width: 100px;
     border-color: transparent;
     border-radius: 15px;
+    &:hover {
+        cursor: pointer;
+    }
 `;
