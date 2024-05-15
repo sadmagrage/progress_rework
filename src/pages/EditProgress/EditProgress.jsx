@@ -30,7 +30,7 @@ export default function EditProgress () {
         toast.dismiss();
         toast.loading("Atualizando progress");
 
-        updateProgress({ progressId, attempt, timestamp })
+        updateProgress(progressId, { attempt, timestamp })
             .then(() => {
                 toast.dismiss();
                 toast.success("Atualizado com sucesso");
@@ -65,7 +65,7 @@ export default function EditProgress () {
         findOne(query.get("progress_id"))
             .then(data => {
                 setDatetime(dayjs(parseInt(data.timestamp)));
-                setProgressId(data.progressId);
+                setProgressId(data.id);
                 setAttempt(data.attempt);
                 setTimestamp(data.timestamp);
             });

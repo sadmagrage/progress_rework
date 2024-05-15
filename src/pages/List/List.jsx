@@ -19,7 +19,7 @@ export default function List () {
     return (
         <ListStyled darkMode={ darkMode } >
             {
-                progress.map(progressObj => <Progress darkMode={ darkMode }  progressItem={ progressObj } key={ progressObj.progressId } onClick={ () => navigate(`/progress?progress_id=${ progressObj.progressId }`) } />)
+                progress.map(progressObj => <Progress darkMode={ darkMode }  progressItem={ progressObj } key={ progressObj.id } onClick={ () => navigate(`/progress?progress_id=${ progressObj.id }`) } />)
             }
         </ListStyled>
     )

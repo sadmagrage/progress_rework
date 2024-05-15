@@ -1,6 +1,7 @@
 import { ProgressAttempt, ProgressDate, ProgressStyled, ProgressTimestamp } from "./Progress.styled";
 
 const formatDate = (dateStr) => {
+    if (typeof(dateStr) == "string") dateStr = parseInt(dateStr)
     const date = new Date(dateStr);
 
     let mes = "";
@@ -53,7 +54,7 @@ export default function Progress ({ progressItem, onClick, darkMode }) {
         <ProgressStyled onClick={onClick} darkMode={ darkMode }>
             <ProgressAttempt darkMode={ darkMode } >Attempt: { progressItem.attempt }</ProgressAttempt>
             <ProgressTimestamp darkMode={ darkMode } >{ progressItem.timestamp }</ProgressTimestamp>
-            <ProgressDate darkMode={ darkMode } >{ formatDate(progressItem.date) }</ProgressDate>
+            <ProgressDate darkMode={ darkMode } >{ formatDate(progressItem.timestamp) }</ProgressDate>
         </ProgressStyled>
     )    
 }
